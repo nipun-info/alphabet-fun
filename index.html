@@ -39,6 +39,12 @@
         }
     </script>
 
+    <style>
+        #model-box {
+            display: none;
+        }
+    </style>
+
     <!-- custom css Style -->
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -58,7 +64,7 @@
         <section id="play-ground" class="play-ground font-poppins hidden">
             <div class="flex flex-col items-center gap-20 pt-20">
                 <!-- screen -->
-                <div
+                <div id="art-board"
                     class="artboard artboard-horizontal phone-6 border-[20px] rounded-2xl border-[#010313CC] bg-[#FFFFFFB3]">
                     <div class="flex justify-center ">
                         <p class="bg-[#2F2941] text-white px-6 pb-4 rounded-b-xl">
@@ -66,7 +72,7 @@
                         </p>
                     </div>
                     <div class="flex justify-center items-center h-full ">
-                        <p id="current-alphabet" class="text-9xl font-bold text-black">Y</p>
+                        <p id="current-alphabet" class="text-9xl font-bold text-black uppercase">Y</p>
                     </div>
                 </div>
 
@@ -141,8 +147,21 @@
                     </p>
                 </div>
             </div>
-
         </section>
+
+        <!-- model box section -->
+        <section id="model-box" class="fixed w-full h-full top-0 bg-black bg-opacity-40 justify-center items-center">
+            <div class="bg-purple-700 text-white px-4 py-8 rounded w-1/3 relative">
+                <button onclick="modalClose()"
+                    class="absolute top-2 right-2 rounded-full border-2 border-solid border-white w-9 h-9 text-xl flex items-center justify-center hover:bg-white hover:bg-opacity-30">
+                    X
+                </button>
+                <h2>Hello</h2>
+                <p>Press ESC key or click on x button to close</p>
+            </div>
+        </section>
+
+
     </main>
 
     <script src="script/utility.js"></script>

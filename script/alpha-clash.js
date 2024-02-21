@@ -6,8 +6,10 @@ function play() {
     showElementById('play-ground');
 
     // reset score and life
-    setTextElementValueById('life-remaining', 5)
-    setTextElementValueById('current-score', 0)
+    setTextElementValueById('life-remaining', 5);
+    setTextElementValueById('current-score', 0);
+
+    isGamePlayOn = true;
 
     continueGame();
 }
@@ -25,6 +27,10 @@ function gameOver() {
     const currentAlphabet = currentAlphabetValue.innerText;
     // console.log(currentAlphabet);
     removeBackgroundColorById(currentAlphabet);
+
+    isGamePlayOn = false;
+
+    artBoard.style.background = `linear-gradient(#FFFFFFB3 100%, red)`;
 }
 
 function continueGame() {
@@ -38,8 +44,17 @@ function continueGame() {
     setBackgroundColorById(alphabet)
 }
 
+// ------- reward Video 
+const audio = new Audio();
+
+let isGamePlayOn = false;
+
+const artBoard = document.getElementById('art-board');
+
+const modalBox = document.getElementById("model-box");
 
 function handleKeyBoardButtonPress(event) {
+    if (isGamePlayOn == false) return;
     const playerPressed = event.key;
     // console.log("player pressed ", playerPressed);
 
@@ -48,6 +63,11 @@ function handleKeyBoardButtonPress(event) {
 
     if (playerPressed === expectedAlphabet) {
         // console.log("You Got a Point");
+
+        audio.src = "../audio/success.mp3";
+        audio.play()
+
+
         // way-2: use get and set fuction getTextElementValueById()
         const currentScore = getTextElementValueById('current-score');
         const newScore = currentScore + 1;
@@ -57,11 +77,22 @@ function handleKeyBoardButtonPress(event) {
         continueGame();
     } else {
         // console.log("You lose the life");
-        const currentLife = getTextElementValueById('life-remaining');
-        const newLife = currentLife - 1;
-        setTextElementValueById('life-remaining', newLife);
+        audio.src = "../audio/wrong.mp3";
+        audio.play();
 
-        if (newLife === 0) {
+        const currentLife = getTextElementValueById('life-remaining');
+        const updatedLife = currentLife - 1;
+
+        // const updatedLifePercentage = 4/5 * 100;
+        const updatedLifePercentage = (updatedLife / 5) * 100;
+
+        console.log(updatedLifePercentage);
+
+        artBoard.style.background = `linear-gradient(#FFFFFFB3 ${updatedLifePercentage}%, red)`;
+
+        setTextElementValueById('life-remaining', updatedLife);
+
+        if (updatedLife === 0) {
             gameOver();
         }
 
@@ -72,8 +103,28 @@ function handleKeyBoardButtonPress(event) {
     }
 }
 
+function modalOpen(event) {
+    if (event.clientY < 20) {
+        modalBox.style.display = "flex";
+    }
+}
+
+function modalClose() {
+    modalBox.style.display = "none";
+}
+
+document.body.onmousemove = modalOpen;
+
 // capture keyboard key press
 document.addEventListener('keyup', handleKeyBoardButtonPress);
+
+
+
+
+
+
+
+
 
 
 
