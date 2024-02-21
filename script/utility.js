@@ -33,3 +33,15 @@ function removeBackgroundColorById(elementId) {
     const element = document.getElementById(elementId);
     element.classList.remove('bg-orange-400');
 }
+
+// 28.5 get an set score or life using function
+function getTextElementValueById(elementId) {
+    const elementTextValue = document.getElementById(elementId).innerText;
+    const value = parseInt(elementTextValue);
+    return value;
+}
+
+function setTextElementValueById(elementId, value) {
+    const element = document.getElementById(elementId);
+    element.innerText = value;
+}

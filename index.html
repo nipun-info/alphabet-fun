@@ -112,13 +112,13 @@
                     <button class="btn rounded-full bg-purple-400 text-white px-4">
                         Life
                         <img src="./images/heart.svg" alt="">
-                        <span>1</span>
+                        <span id="life-remaining">5</span>
                     </button>
 
                     <button class="btn rounded-full bg-purple-800 text-white px-4">
                         Score
                         <img src="./images/dollar.svg" alt="">
-                        <span>1</span>
+                        <span id="current-score">0</span>
                     </button>
                 </div>
 
@@ -126,12 +126,16 @@
         </section>
 
         <!-- score section -->
-        <section id="" class="score hidden">
+        <section id="final-score" class="score hidden">
             <div class="min-h-screen flex justify-center items-center ">
                 <div
                     class="flex flex-col justify-center items-center text-white p-20 space-y-4 from-transparent border-2 rounded-2xl">
-                    <h1 class="text-5xl">Score: 14</h1>
-                    <button class="btn">Play Again</button>
+                    <h4 class="text-3xl">Game Over !</h4>
+                    <h1 class="text-5xl">
+                        Score:
+                        <span id="last-score">14</span>
+                    </h1>
+                    <button onclick="play()" class="btn">Play Again</button>
                     <p>
                         Practice will make you Pro
                     </p>
@@ -143,6 +147,7 @@
 
     <script src="script/utility.js"></script>
     <script src="script/alpha-clash.js"></script>
+    <!-- <script src="script/script.js"></script> -->
 
 
 
